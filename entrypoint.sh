@@ -8,7 +8,7 @@ if [ -z "${SLEEP}" ]; then
   SLEEP=21600
 fi
 while true; do
-  /opt/google-cloud-auto-snapshot.sh ${GREPTHING}
+  /opt/google-cloud-auto-snapshot.sh ${GREPTHING} ${PROJECT}
   if [ -n "${NOTIFY_COMMAND}" ]; then
     echo "Running notify command: $NOTIFY_COMMAND"
     bash -c "$NOTIFY_COMMAND"
