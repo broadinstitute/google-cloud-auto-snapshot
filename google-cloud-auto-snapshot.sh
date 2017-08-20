@@ -8,7 +8,7 @@ done
 # snapshots are incremental and dont need to be deleted, deleting snapshots will merge snapshots, so deleting doesn't loose anything
 # having too many snapshots is unwiedly so this script deletes them after 60 days
 #
-gcloud compute snapshots list --project $2 --filter="creationTimestamp<$(date -v "-60d" "+%Y-%m-%d")" --regexp "(autogcs.*)" --uri | while read SNAPSHOT_URI; do
+gcloud compute snapshots list --project $2 --filter="creationTimestamp<$(date --date="30 days ago" +"%Y-%m-%d")" --regexp "(autogcs.*)" --uri | while read SNAPSHOT_URI; do
    gcloud compute snapshots --project $2 delete $SNAPSHOT_URI
 done
 #
