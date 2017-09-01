@@ -1,4 +1,6 @@
 #!/bin/bash
+echo $2
+echo $1
 gcloud compute disks list --project $2 --format='value(name,zone)'|grep $1| while read DISK_NAME ZONE; do
   gcloud compute disks --project $2 snapshot $DISK_NAME --snapshot-names autogcs-${DISK_NAME:0:31}-$(date "+%Y-%m-%d-%s") --zone $ZONE
 done
