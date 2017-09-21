@@ -9,6 +9,6 @@ done
 # having too many snapshots is unwiedly so this script deletes them after 60 days
 #
 gcloud compute snapshots list --project $2 --filter="creationTimestamp<$(date --date="30 days ago" +"%Y-%m-%d")" --regexp "(autogcs.*)" --uri | while read SNAPSHOT_URI; do
-   gcloud compute snapshots --project $2 delete $SNAPSHOT_URI
+   gcloud compute snapshots --project $2 --quiet delete $SNAPSHOT_URI
 done
 #
